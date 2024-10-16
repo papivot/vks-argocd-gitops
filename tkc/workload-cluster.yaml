@@ -12,7 +12,7 @@ spec:
       cidrBlocks: ["192.168.0.0/20"]
   paused: false
   topology:
-    class: tanzukubernetescluster
+    class: builtin-generic-v3.1.0
     version: v1.31.1---vmware.2-fips-vkr.2
     controlPlane:
 #      machineHealthCheck:

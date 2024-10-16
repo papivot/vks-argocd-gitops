@@ -6,4 +6,4 @@ metadata:
 spec:  
   fetch:    
     imgpkgBundle:      
-      image: projects.registry.vmware.com/tkg/packages/standard/repo:v2024.8.21
+      image: projects.packages.broadcom.com/vsphere/iaas/packages/2024.9.18/tanzu-standard-packages:v2024.9.18

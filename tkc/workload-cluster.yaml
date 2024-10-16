@@ -52,8 +52,8 @@ spec:
 #            type: Ready
         metadata:
           annotations:
-#            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "3"
-#            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "3"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
             run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
           labels:
             my-custom-label-key: my-custom-label-value
@@ -62,7 +62,7 @@ spec:
 #        nodeDeletionTimeout: "10s"
 #        nodeDrainTimeout: "0s"
 #        nodeVolumeDetachTimeout: "0s"
-        replicas: 1
+#        replicas: 1
         variables:
           overrides:
           - name: vmClass
@@ -84,8 +84,8 @@ spec:
 #            type: Ready
         metadata:
           annotations:
-#            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "3"
-#            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "0"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "3"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "0"
             run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
           labels:
             my-custom-label-key: my-custom-label-value
@@ -93,7 +93,7 @@ spec:
 #        nodeDeletionTimeout: "10s"
 #        nodeDrainTimeout: "0s"
 #        nodeVolumeDetachTimeout: "0s"
-        replicas: 0
+#        replicas: 0
 #        variables:
 #          overrides:
 #          - name: vmClass
@@ -113,8 +113,8 @@ spec:
 #            type: Ready
         metadata:
           annotations:
-#            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "3"
-#           cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "0"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "3"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "0"
             run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
           labels:
             my-custom-label-key: my-custom-label-value
@@ -122,7 +122,7 @@ spec:
 #        nodeDeletionTimeout: "10s"
 #        nodeDrainTimeout: "0s"
 #        nodeVolumeDetachTimeout: "0s"
-        replicas: 0
+#        replicas: 0
 #         variables:
 #           overrides:
 #           - name: vmClass
@@ -131,7 +131,7 @@ spec:
       - name: ntp
         value: time.google.com
       - name: vmClass
-        value: best-effort-small
+        value: best-effort-medium
       - name: storageClass
         value: tanzu
       - name: defaultStorageClass

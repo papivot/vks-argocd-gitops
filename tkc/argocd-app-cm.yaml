@@ -10,6 +10,8 @@ data:
     kind: Application
     metadata:
       name: tkc-addons-${CLUSTER_NAME}-tanzupkgs
+      annotations:
+        argocd.argoproj.io/sync-wave: "1"
     spec:
       project: default
       source:
@@ -25,12 +27,14 @@ data:
     apiVersion: argoproj.io/v1alpha1
     kind: Application
     metadata:
-      name: tkc-addons-${CLUSTER_NAME}-certmanager
+      name: tkc-addons-${CLUSTER_NAME}-autoscaler
+      annotations:
+        argocd.argoproj.io/sync-wave: "2"
     spec:
       project: default
       source:
         repoURL: "https://github.com/papivot/vks-argocd-gitops.git"
-        path: cert-manager
+        path: auto-scaler
         targetRevision: HEAD
         directory:
           recurse: true
@@ -43,12 +47,14 @@ data:
     apiVersion: argoproj.io/v1alpha1
     kind: Application
     metadata:
-      name: tkc-addons-${CLUSTER_NAME}-contour
+      name: tkc-addons-${CLUSTER_NAME}-resources
+      annotations:
+        argocd.argoproj.io/sync-wave: "3"
     spec:
       project: default
       source:
         repoURL: "https://github.com/papivot/vks-argocd-gitops.git"
-        path: contour
+        path: package-resources
         targetRevision: HEAD       
       destination:
         server: ${CLUSTER_IP}

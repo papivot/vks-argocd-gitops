@@ -13,7 +13,7 @@ data:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/papivot/argocd-gitops-tanzu.git"
+        repoURL: "https://github.com/papivot/vks-argocd-gitops.git"
         path: package-repo
         targetRevision: HEAD       
       destination:
@@ -29,7 +29,7 @@ data:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/papivot/argocd-gitops-tanzu.git"
+        repoURL: "https://github.com/papivot/vks-argocd-gitops.git"
         path: cert-manager
         targetRevision: HEAD
         directory:
@@ -47,7 +47,7 @@ data:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/papivot/argocd-gitops-tanzu.git"
+        repoURL: "https://github.com/papivot/vks-argocd-gitops.git"
         path: contour
         targetRevision: HEAD       
       destination:

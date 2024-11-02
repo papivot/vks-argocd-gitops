@@ -1,9 +1,4 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: tanzu-system-ingress
----
-apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: contour-sa
@@ -22,3 +17,34 @@ subjects:
     name: contour-sa
     namespace: tkg-system
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: contour-data-values
+  namespace: tkg-system
+stringData:
+  values.yml: |
+    ---
+    namespace: vks-system-ingress
+    contour:
+      configFileContents: {}
+      useProxyProtocol: false
+      replicas: 2
+      pspNames: "vmware-system-restricted"
+      logLevel: info
+    envoy:
+      service:
+        type: LoadBalancer
+        annotations: {}
+        externalTrafficPolicy: Cluster
+        disableWait: false
+      hostPorts:
+        enable: true
+        http: 80
+        https: 443
+      hostNetwork: false
+      terminationGracePeriodSeconds: 300
+      logLevel: info
+    certificates:
+      duration: 8760h
+      renewBefore: 360h

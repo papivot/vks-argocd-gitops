@@ -2,24 +2,14 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: cert-manager
-  namespace: cert-manager
+  namespace: tkg-system
 spec:
   defaultNamespace: cert-manager
   serviceAccountName: cert-manager-sa
   packageRef:
     refName: cert-manager.tanzu.vmware.com
     versionSelection:
-      constraints: 1.13.3+vmware.1-tkg.1 #PKG-VERSION
+      constraints: 1.13.3+vmware.1-tkg.1
   values:
   - secretRef:
       name: cert-manager-data-values
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cert-manager-data-values
-  namespace: cert-manager
-stringData:
-  values.yml: |
-    ---
-    namespace: cert-manager

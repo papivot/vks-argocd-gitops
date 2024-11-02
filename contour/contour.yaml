@@ -10,39 +10,7 @@ spec:
   packageRef:
     refName: contour.tanzu.vmware.com
     versionSelection:
-      constraints: 1.29.1+vmware.1-tkg.1 #PKG-VERSION
+      constraints: 1.28.2+vmware.1-tkg.1
   values:
   - secretRef:
       name: contour-data-values
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: contour-data-values
-  namespace: tkg-system
-stringData:
-  values.yml: |
-    ---
-    namespace: tanzu-system-ingress
-    contour:
-      configFileContents: {}
-      useProxyProtocol: false
-      replicas: 2
-      pspNames: "vmware-system-restricted"
-      logLevel: info
-    envoy:
-      service:
-        type: LoadBalancer
-        annotations: {}
-        externalTrafficPolicy: Cluster
-        disableWait: false
-      hostPorts:
-        enable: true
-        http: 80
-        https: 443
-      hostNetwork: false
-      terminationGracePeriodSeconds: 300
-      logLevel: info
-    certificates:
-      duration: 8760h
-      renewBefore: 360h

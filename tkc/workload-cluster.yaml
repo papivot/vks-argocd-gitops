@@ -94,10 +94,12 @@ spec:
 #        nodeDrainTimeout: "0s"
 #        nodeVolumeDetachTimeout: "0s"
 #        replicas: 0
-#        variables:
-#          overrides:
-#          - name: vmClass
-#            value: best-effort-large
+        variables:
+          overrides:
+          - name: vmClass
+            value: best-effort-medium
+          - name: nodePoolLabels
+            value: [{ "key": "my-nodepool-name", "value": "node-pool-2" }]
       - class: node-pool
 #        failureDomain: zone3
 #        machineHealthCheck:
@@ -123,15 +125,17 @@ spec:
 #        nodeDrainTimeout: "0s"
 #        nodeVolumeDetachTimeout: "0s"
 #        replicas: 0
-#         variables:
-#           overrides:
-#           - name: vmClass
-#             value: best-effort-large
+         variables:
+          overrides:
+          - name: vmClass
+            value: best-effort-medium
+          - name: nodePoolLabels
+            value: [{ "key": "my-nodepool-name", "value": "node-pool-3" }]
     variables:
       - name: ntp
         value: time.google.com
       - name: vmClass
-        value: best-effort-medium
+        value: best-effort-small
       - name: storageClass
         value: tanzu
       - name: defaultStorageClass
@@ -150,18 +154,18 @@ spec:
                         secret: QiMgJGYXudtljldVyl+AnXQQlk7r9iUXBfVKqdEfKm8=
                 - identity: {}
 # ADDITIONAL VALUES
-#      - name: nodePoolVolumes
-#        value:
-#        - capacity:
-#            storage: "15Gi"
-#          mountPath: "/var/lib/containerd"
-#          name: containerd
-#          storageClass: tanzu
-#        - capacity:
-#            storage: "15Gi"
-#          mountPath: "/var/lib/kubelet"
-#          name: kubelet
-#          storageClass: tanzu
+      - name: nodePoolVolumes
+        value:
+        - capacity:
+            storage: "15Gi"
+          mountPath: "/var/lib/containerd"
+          name: containerd
+          storageClass: tanzu
+        - capacity:
+            storage: "15Gi"
+          mountPath: "/var/lib/kubelet"
+          name: kubelet
+          storageClass: tanzu
       - name: controlPlaneVolumes
         value:
         - capacity:
@@ -184,7 +188,7 @@ spec:
           warnVersion: latest
       - name: kubeAPIServerFQDNs
         value:
-          - workload-vsphere-tkg4.env1.lab.test
+          - workload-vsphere-tkg1.env1.lab.test
       - name: controlPlaneCertificateRotation
         value:
           daysBefore: 90

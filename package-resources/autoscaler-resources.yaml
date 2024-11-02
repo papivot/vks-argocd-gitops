@@ -17,3 +17,24 @@ subjects:
     name: autoscaler-sa
     namespace: tkg-system
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: autoscaler-data-values
+  namespace: tkg-system
+stringData:
+  values.yml: |
+    ---
+    arguments:
+      ignoreDaemonsetsUtilization: true
+      maxNodeProvisionTime: 15m
+      maxNodesTotal: 0
+      metricsPort: 8085
+      scaleDownDelayAfterAdd: 10m
+      scaleDownDelayAfterDelete: 10s
+      scaleDownDelayAfterFailure: 3m
+      scaleDownUnneededTime: 10m
+    clusterConfig:
+      clusterName: "workload-vsphere-tkg1"
+      clusterNamespace: "demo1"
+    paused: false

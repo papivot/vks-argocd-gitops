@@ -99,6 +99,7 @@ spec:
                 - identity: {}
       - name: controlPlaneCertificateRotation
         value:
+          activate: true
           daysBefore: 90
       - name: controlPlaneVolumes
         value:
@@ -145,6 +146,6 @@ spec:
       - name: vmClass
         value: best-effort-small
 # ADDITIONAL VALUES
-      - name: kubeAPIServerFQDNs
-        value:
-          - workload-vsphere-tkg1.env1.lab.test
+#      - name: kubeAPIServerFQDNs
+#        value:
+#          - workload-vsphere-tkg1.env1.lab.test

@@ -10,7 +10,7 @@ spec:
     serviceDomain: "cluster.local"
     services:
       cidrBlocks: ["192.168.0.0/20"]
-  paused: false
+#  paused: false
   topology:
     class: builtin-generic-v3.1.0
     version: v1.31.1---vmware.2-fips-vkr.2
@@ -84,14 +84,6 @@ spec:
           - name: nodePoolLabels
             value: [{ "key": "my-nodepool-name", "value": "node-pool-3" }]
     variables:
-      - name: ntp
-        value: time.google.com
-      - name: vmClass
-        value: best-effort-small
-      - name: storageClass
-        value: tanzu
-      - name: defaultStorageClass
-        value: tanzu
       - name: clusterEncryptionConfigYaml
         value: |
           apiVersion: apiserver.config.k8s.io/v1
@@ -105,19 +97,9 @@ spec:
                       - name: key1
                         secret: QiMgJGYXudtljldVyl+AnXQQlk7r9iUXBfVKqdEfKm8=
                 - identity: {}
-# ADDITIONAL VALUES
-      - name: nodePoolVolumes
+      - name: controlPlaneCertificateRotation
         value:
-        - capacity:
-            storage: "15Gi"
-          mountPath: "/var/lib/containerd"
-          name: containerd
-          storageClass: tanzu
-        - capacity:
-            storage: "15Gi"
-          mountPath: "/var/lib/kubelet"
-          name: kubelet
-          storageClass: tanzu
+          daysBefore: 90
       - name: controlPlaneVolumes
         value:
         - capacity:
@@ -130,6 +112,26 @@ spec:
           mountPath: "/var/lib/kubelet"
           name: kubelet
           storageClass: tanzu
+      - name: defaultStorageClass
+        value: tanzu
+      - name: nodePoolLabels
+        value:
+          - key: "my-nodepool-key"
+            value: "my-nodepool-value"
+      - name: nodePoolVolumes
+        value:
+        - capacity:
+            storage: "15Gi"
+          mountPath: "/var/lib/containerd"
+          name: containerd
+          storageClass: tanzu
+        - capacity:
+            storage: "15Gi"
+          mountPath: "/var/lib/kubelet"
+          name: kubelet
+          storageClass: tanzu
+      - name: ntp
+        value: time.google.com
       - name: podSecurityStandard
         value:
           audit: restricted
@@ -138,13 +140,11 @@ spec:
           enforceVersion: latest
           warn: privileged
           warnVersion: latest
+      - name: storageClass
+        value: tanzu
+      - name: vmClass
+        value: best-effort-small
+# ADDITIONAL VALUES
       - name: kubeAPIServerFQDNs
         value:
           - workload-vsphere-tkg1.env1.lab.test
-      - name: controlPlaneCertificateRotation
-        value:
-          daysBefore: 90
-      - name: nodePoolLabels
-        value:
-          - key: "my-nodepool-key"
-            value: "my-nodepool-value"

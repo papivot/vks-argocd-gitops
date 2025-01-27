@@ -27,6 +27,6 @@ spec:
         configMap:
           name: argocd-app-configmap
       restartPolicy: Never
-      serviceAccountName: demo1-argocd-argocd-application-controller
+      serviceAccountName: my-demo-argocd-argocd-application-controller
      # serviceAccountName: argocd-hook
   backoffLimit: 2

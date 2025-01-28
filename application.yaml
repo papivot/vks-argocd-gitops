@@ -15,3 +15,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+  ignoreDifferences:
+  - group: cluster.x-k8s.io
+    kind: Cluster
+    jqPathExpressions:
+    - .spec.topology.variables[] | select((.name == "user") or (.name == "TKR_DATA") or (.name == "clusterEncryptionConfigYaml") or (.name == "extensionCert"))

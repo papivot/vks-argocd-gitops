@@ -11,3 +11,17 @@ namespace: demo1
 images:
 - name: whoami6443/argocd-hook
   newName: us-central1-docker.pkg.dev/navneet-410819/whoami6443-hub/whoami6443/argocd-hook
+
+patches:
+  - patch: |-
+      apiVersion: batch/v1
+      kind: Job
+      metadata:
+        name: app-tkc-creation
+      spec:
+        template:
+          spec:
+            serviceAccountName: my-demo-argocd-argocd-application-controller # {NAME-OF-ARGOCD-INSTANCE}-argocd-application-controller
+    target:
+      kind: Job
+      name: app-tkc-creation

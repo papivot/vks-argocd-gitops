@@ -21,7 +21,7 @@ patches:
       spec:
         template:
           spec:
-            serviceAccountName: my-demo-argocd-argocd-application-controller # {NAME-OF-ARGOCD-INSTANCE}-argocd-application-controller
+            serviceAccountName: argocd-application-controller # {NAME-OF-ARGOCD-INSTANCE}-argocd-application-controller
     target:
       kind: Job
       name: app-tkc-creation
